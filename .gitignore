@@ -1,3 +1,5 @@
 *safetensors
 env/
 wandb/
+__pycache__/
+s3.py
