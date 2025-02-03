@@ -1,0 +1,60 @@
+{
+    "model_name_or_path": "parler_1001_1",
+    "description_tokenizer_name":"parler_1001_1",
+    "feature_extractor_name": "ylacombe/dac_44khZ_8kbps",
+    "prompt_tokenizer_name":"google/flan-t5-large",
+
+    "save_to_disk":  "./tmp_dataset_audio_2/",
+    "temporary_save_to_disk": "./audio_code_tmp_2/",
+
+    "wandb_project": "parler",
+
+    "report_to": ["wandb"],
+    "overwrite_output_dir": true,
+    "output_dir": "1201_0",
+
+    "train_dataset_name": "feedloop-ai/fl-hqrecording",
+    "train_metadata_dataset_name" : "feedloop-ai/fl-hqrecording",
+    "train_dataset_config_name": "default",
+  
+    "target_audio_column_name": "audio",
+    "description_column_name": "speaker",
+    "prompt_column_name": "text",
+    
+    "max_duration_in_seconds": 60,
+    "min_duration_in_seconds": 1.0,
+    "max_text_length": 32768,
+
+    "group_by_length": true,
+    "add_audio_samples_to_wandb": true,
+    "id_column_name": "uid",
+
+    "preprocessing_num_workers": 4,
+    "do_train": true,
+    "max_steps": 150,
+    "gradient_accumulation_steps": 39,
+    "gradient_checkpointing": true,
+    "per_device_train_batch_size": 32,
+    "learning_rate": 0.000095,
+    "adam_beta1": 0.9,
+    "adam_beta2": 0.99,
+    "weight_decay": 0.01,
+
+    "lr_scheduler_type": "constant_with_warmup",
+    "warmup_ratio":  0.1,
+
+    "logging_steps": 1,
+    "freeze_text_encoder": true,
+
+
+    "do_eval": false, 
+    "predict_with_generate": true,
+    "include_inputs_for_metrics": true,
+
+    "audio_encoder_per_device_batch_size":24,
+    "dtype": "bfloat16",
+    "seed": 456,
+
+    "dataloader_num_workers":4,
+    "attn_implementation": "sdpa"
+}
