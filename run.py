@@ -206,13 +206,17 @@ def main():
     )
 
     # load description tokenizer
-    description_tokenizer = AutoTokenizer.from_pretrained(
-        model_args.description_tokenizer_name or model_args.model_name_or_path,
-        cache_dir=model_args.cache_dir,
-        token=data_args.token,
-        trust_remote_code=data_args.trust_remote_code,
-        use_fast=model_args.use_fast_tokenizer,
+    description_tokenizer = prompt_tokenizer
+        logger.warning(
+        f"Using promt tokenizer for description tokenizer regardless of your args."
     )
+    # description_tokenizer = AutoTokenizer.from_pretrained(
+    #     model_args.description_tokenizer_name or model_args.model_name_or_path,
+    #     cache_dir=model_args.cache_dir,
+    #     token=data_args.token,
+    #     trust_remote_code=data_args.trust_remote_code,
+    #     use_fast=model_args.use_fast_tokenizer,
+    # )
 
     if model_args.use_fast_tokenizer:
         logger.warning(
