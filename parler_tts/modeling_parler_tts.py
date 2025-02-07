@@ -1436,8 +1436,8 @@ class ParlerTTSDecoder(ParlerTTSPreTrainedModel):
         # if prompt_hidden_states, fuse to inputs_embeds and update input shape
         if prompt_hidden_states is not None:
             prepended_sequence_length = prompt_hidden_states.shape[-2]
-            print("prompt_hidden_states shape:", prompt_hidden_states.shape)
-            print("inputs_embeds shape:", inputs_embeds.shape)            
+            # print("prompt_hidden_states shape:", prompt_hidden_states.shape)
+            # print("inputs_embeds shape:", inputs_embeds.shape)            
             inputs_embeds = torch.cat([prompt_hidden_states, inputs_embeds], dim=1)
 
         return_legacy_cache = False
