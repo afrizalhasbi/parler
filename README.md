@@ -1,8 +1,8 @@
 # Parler-TTS
 
 ```
-git clone https://github.com/afrizalhasbi/parler-tts
-cd parler-tts
+git clone https://github.com/afrizalhasbi/parler
+cd parler
 pip install -e .[train]
 FLASH_ATTENTION_SKIP_CUDA_BUILD=TRUE pip install flash-attn --no-build-isolation
 ```
