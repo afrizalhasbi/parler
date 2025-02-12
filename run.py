@@ -230,10 +230,15 @@ def main():
 
     # assume that the dataset has been saved to `save_to_disk` if the latter is not empty
     dataset_was_precomputed = len(os.listdir(data_args.save_to_disk)) > 0
-    if dataset_was_precomputed:
+    # if dataset_was_precomputed:
+    try:
         with accelerator.local_main_process_first():
             vectorized_datasets = datasets.load_from_disk(data_args.save_to_disk)
-    else:
+            print("loading precomputed dataset successful.")
+            sleep(5)
+    except:
+        print("loading precomputed dataset failed. will try to load with load_dataset")
+        sleep(5)
         raw_datasets = DatasetDict()
 
         columns_to_keep = {
