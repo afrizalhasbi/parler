@@ -4,8 +4,8 @@
     "feature_extractor_name": "ylacombe/dac_44khZ_8kbps",
     "prompt_tokenizer_name":"google/flan-t5-large",
 
-    "save_to_disk":  "./tmp_dataset_audio_1/",
-    "temporary_save_to_disk": "./audiods/",
+    "save_to_disk":  "./audiods/",
+    "temporary_save_to_disk": "./audiods_tmp/",
 
     "wandb_project": "parler",
 
