@@ -5,16 +5,16 @@
     "prompt_tokenizer_name":"google/flan-t5-large",
 
     "save_to_disk":  "./tmp_dataset_audio_1/",
-    "temporary_save_to_disk": "./audio_code_tmp_1/",
+    "temporary_save_to_disk": "./audiods/",
 
     "wandb_project": "parler",
 
     "report_to": ["wandb"],
     "overwrite_output_dir": true,
-    "output_dir": "parler_0302_0",
+    "output_dir": "parler_ddmm_i",
 
-    "train_dataset_name": "feedloop-ai/fl-hqfemale-v2",
-    "train_metadata_dataset_name" : "feedloop-ai/fl-hqfemale-v2",
+    "train_dataset_name": "feedloop-ai/fl-wildspeech-tio",
+    "train_metadata_dataset_name" : "feedloop-ai/fl-wildspeech-tio",
     "train_dataset_config_name": "default",
   
     "target_audio_column_name": "audio",
@@ -28,12 +28,13 @@
     "group_by_length": true,
     "add_audio_samples_to_wandb": true,
     "id_column_name": "uid",
+    "save_steps": 5000,
     "save_total_limit": 1,
 
     "preprocessing_num_workers": 3,
     "do_train": true,
     "num_train_epochs": 25,
-    "gradient_accumulation_steps": 1,
+    "gradient_accumulation_steps": 16,
     "gradient_checkpointing": true,
     "per_device_train_batch_size": 32,
     "learning_rate": 0.005,
@@ -42,7 +43,7 @@
     "weight_decay": 0.01,
 
     "lr_scheduler_type": "linear",
-    "warmup_ratio":  0.5,
+    "warmup_ratio":  0.04,
 
     "logging_steps": 1,
     "freeze_text_encoder": true,

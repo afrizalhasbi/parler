@@ -3,3 +3,5 @@ env/
 wandb/
 __pycache__/
 s3.py
+samples_cs/
+samples_rec/
