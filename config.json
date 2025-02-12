@@ -11,7 +11,7 @@
 
     "report_to": ["wandb"],
     "overwrite_output_dir": true,
-    "output_dir": "parler_ddmm_i",
+    "output_dir": "./finetunes/parler_ddmm_i",
 
     "train_dataset_name": "feedloop-ai/fl-wildspeech-tio",
     "train_metadata_dataset_name" : "feedloop-ai/fl-wildspeech-tio",
