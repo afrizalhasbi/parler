@@ -1,5 +1,6 @@
 #!/bin/bash
 # Check if directory argument is provided
+rm -rf samples_cs
 python tcs.py
 dir="samples_cs"
 # Remove any trailing slash from dir and append .wav to create output file name.
@@ -12,3 +13,5 @@ ffmpeg -f concat -safe 0 -i <(
     echo "file '$PWD/$file'"
   done
 ) -c copy "$out"
+
+echo "Saved audio in samples_cs and aggregated in samples_cs.mp3"
