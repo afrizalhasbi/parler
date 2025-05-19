@@ -235,10 +235,8 @@ def main():
         with accelerator.local_main_process_first():
             vectorized_datasets = datasets.load_from_disk(data_args.save_to_disk)
             print("loading precomputed dataset successful.")
-            sleep(5)
     except:
         print("loading precomputed dataset failed. will try to load with load_dataset")
-        sleep(5)
         raw_datasets = DatasetDict()
 
         columns_to_keep = {
