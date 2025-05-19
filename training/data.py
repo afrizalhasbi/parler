@@ -6,7 +6,7 @@ import datasets
 import numpy as np
 import torch
 from accelerate import Accelerator
-from datasets import Dataset, IterableDataset, concatenate_datasets, interleave_datasets, load_dataset
+from datasets import Dataset, IterableDataset, concatenate_datasets, interleave_datasets, load_dataset, load_from_disk
 from tqdm import tqdm
 from transformers import AutoFeatureExtractor, AutoTokenizer
 
@@ -205,13 +205,18 @@ def load_multiple_datasets(
     # iterate over the datasets we want to interleave
     for dataset_dict in tqdm(dataset_names_dict, desc="Combining datasets..."):
         with accelerator.local_main_process_first():
-            dataset = load_dataset(
-                dataset_dict["name"],
-                dataset_dict["config"],
-                split=dataset_dict["split"],
-                streaming=streaming,
-                **kwargs,
-            )
+            try:
+                dataset = load_from_disk(
+                    dataset_dict["name"],
+                )
+            except:
+                dataset = load_dataset(
+                    dataset_dict["name"],
+                    dataset_dict["config"],
+                    split=dataset_dict["split"],
+                    streaming=streaming,
+                    **kwargs,
+                )
             dataset_features = dataset.features.keys()
 
             if sampling_rate is not None and audio_column_name is not None:
@@ -223,13 +228,18 @@ def load_multiple_datasets(
                 logger.info(
                     f'Merging {dataset_dict["name"]} - {dataset_dict["split"]} with {metadata_dataset_name} - {dataset_dict["split"]}'
                 )
-                metadata_dataset = load_dataset(
-                    metadata_dataset_name,
-                    dataset_dict["config"],
-                    split=dataset_dict["split"],
-                    streaming=streaming,
-                    **kwargs,
-                )
+                try:
+                    metadata_dataset = load_from_disk(
+                        metadata_dataset_name,
+                    )
+                except:
+                    metadata_dataset = load_dataset(
+                        metadata_dataset_name,
+                        dataset_dict["config"],
+                        split=dataset_dict["split"],
+                        streaming=streaming,
+                        **kwargs,
+                    )
 
                 # TODO(YL): I forgot to create unique ids for MLS english.
                 # To iterate faster, I bypass the original id check and do another one. - Done once because assuming it won't change next time
